@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Post, User, Comment, Vote } = require('../../models');
+const { Post, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // get all users
@@ -9,11 +9,13 @@ router.get('/', (req, res) => {
     Post.findAll({
         // query configuration
         attributes: [
-            'id', 
-            'post_url', 
-            'title', 
+            'id',  
+            'title',
+            'content', 
             'created_at',
-            [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+        ],
+        order: [
+            ['created_at', 'DESC']
         ],
         include: [
             {
@@ -45,10 +47,9 @@ router.get('/:id', (req, res) => {
         },
         attributes: [
             'id', 
-            'post_url', 
+            'content', 
             'title', 
             'created_at',
-        [sequelize.literal('(SELECT COUNT (*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
     ],
         include: [
             {
@@ -83,7 +84,7 @@ router.post('/', withAuth, (req, res) => {
     // expects 'title & post'
     Post.create({
         title: req.body.title,
-        post_url: req.body.post_url,
+        post_url: req.body.content,
         user_id: req.session.user_id
     })
     .then(dbPostData => res.json(dbPostData))
@@ -93,26 +94,12 @@ router.post('/', withAuth, (req, res) => {
     });
 });
 
-// vote on a post
-// PUT /api/posts/upvote
-router.put('/upvote', withAuth, (req, res) => {
-    // make sure session exists first
-    if (req.session) {
-        // pass session id along with all destructured properties on req.body
-        Post.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Comment, User})
-        .then(updatedVoteData => res.json(updatedVoteData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-    }
-});
-
 // update post 
 router.put('/:id', withAuth, (req, res) => {
     Post.update(
         {
-            title: req.body.title
+            title: req.body.title,
+            content: req.body.content
         },
         {
             where: {

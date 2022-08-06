@@ -1,5 +1,5 @@
 {
-  "name": "just-tech-news",
+  "name": "tech-blog",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -9,23 +9,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/panecatl/just-tech-news.git"
+    "url": "git+https://github.com/panecatl/tech-blog.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/panecatl/just-tech-news/issues"
+    "url": "https://github.com/panecatl/tech-blog/issues"
   },
-  "homepage": "https://github.com/panecatl/just-tech-news#readme",
+  "homepage": "https://github.com/panecatl/tech-blog#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "connect-session-sequelize": "^7.1.4",
     "dotenv": "^16.0.1",
-    "express": "^4.17.1",
+    "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
-    "mysql2": "^2.1.0",
-    "sequelize": "^6.3.0"
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.3"
   },
   "devDependencies": {
     "jest": "^28.1.3"
