@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post, Comment, Vote } = require('../../models');
+const { User, Post, Comment } = require('../../models');
 
 // get all users
 router.get('/', (req, res) => {
@@ -47,7 +47,7 @@ router.get('/:id', (req, res) => {
     })
     .catch(err => {
         console.log(err);
-         res.status(500).json(err);
+        res.status(500).json(err);
     });
 });
 
