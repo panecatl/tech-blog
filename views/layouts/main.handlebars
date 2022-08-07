@@ -17,12 +17,12 @@
                 {{!-- log in page --}}
                 <nav class="nav">
                     <a class="link" href="/">Home</a>
-                    {{#if loggedIn}}
                     <a href="/dashboard">Dashboard</a>
+                    {{!-- {{#if loggedIn}} --}}
                     <button id="logout" class="btn-no-style">Logout</button>
-                    {{else}}
+                    {{!-- {{else}} --}}
                     <a href="/login">Login</a>
-                    {{/if}}
+                    {{!-- {{/if}} --}}
                 </nav>
             </div>
             <h1 class="app-title"><i class="fab"></i>The Tech Blog</h1>
@@ -33,10 +33,10 @@
         </main>
     
     </div>
-
-{{#if loggedIn}}
+{{!-- 
+{{#if loggedIn}} --}}
 <script src="/javascript/logout.js"></script>
-{{/if}}
+{{!-- {{/if}} --}}
 </body>
 
 </html>

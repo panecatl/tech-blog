@@ -21,7 +21,7 @@ async function commentFormHandler(event) {
             document.location.reload();
         } else {
             alert(response.statusText);
-            document.querySelector('#comment-form').style.display = 'block';
+            document.querySelector('.comment-form').style.display = 'block';
         }
     }
 }
